@@ -542,7 +542,11 @@ fn get_branch_name() -> Result<String, Box<dyn Error>> {
 pub fn status() -> Result<String, Box<dyn Error>> {
     let head = get_oid("HEAD");
     let branch = get_branch_name()?;
-    let short_oid = &head[0..10];
+    let short_oid = if head.len() >= 10 {
+        &head[0..10]
+    } else {
+        &head
+    };
     if !branch.is_empty() {
         println!("On branch {branch}");
     } else {
@@ -555,7 +559,11 @@ pub fn status() -> Result<String, Box<dyn Error>> {
     };
 
     if !merge_head.is_empty() {
-        let short_oid = &merge_head[0..10];
+        let short_oid = if merge_head.len() >= 10 {
+            &merge_head[0..10]
+        } else {
+            &merge_head
+        };
         println!("Merging with {short_oid}");
     }
 
