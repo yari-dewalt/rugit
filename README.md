@@ -57,3 +57,5 @@ rugit reset <commit-hash>
 # Show commit details
 rugit show <commit-hash>
 ```
+
+Warning: rugit is currently in an alpha state and not fully stable / has known issues, use at your own risk. (After initializing might need to commit to start tracking files)
